@@ -2,17 +2,14 @@ import React from 'react';
 import './assets/css/theme.min.css';
 import './assets/fonts/feather/feather.css';
 
-import MainHeader from './components/header';
 import MainSidebar from './components/sidebar';
 
-function App() {
+function Layout () {
   return (
-    <div className="App">
-      <MainHeader />
-
+    <div className="Layout">
       <MainSidebar />
     </div>
   );
 }
 
-export default App;
+export default Layout;
