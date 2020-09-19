@@ -1,7 +1,21 @@
 import React from 'react';
-import logo from '../../assets/img/logo.svg';
+import { Link } from 'react-router-dom';
+
+import logo from 'assets/img/logo.svg';
+
+import { MAIN_ROUTER } from 'constants/urls';
 
 function Sidebar () {
+  const navItems = MAIN_ROUTER
+    .filter((router) => (!router.hidden))
+    .map((item, index) => (
+    <li className="nav-item" key={index}>
+      <Link className="nav-link" to={item.path}>
+        <i className={`fe fe-${item.icon}`}></i> {item.displayName}
+      </Link>
+    </li>
+  ));
+
   return (
     <nav
       className="
@@ -14,19 +28,8 @@ function Sidebar () {
         </a>
 
         <div className="collapse navbar-collapse">
-          <ul className="navbar-nav mb-md-4">
-            <li className="nav-item">
-              <a
-                className="nav-link"
-                href="#sidebarBasics"
-                data-toggle="collapse"
-                role="button"
-                aria-expanded="false"
-                aria-controls="sidebarBasics"
-              >
-                <i className="fe fe-clipboard"></i> Basics
-              </a>
-            </li>
+          <ul className="navbar-nav">
+            {navItems}
           </ul>
         </div>
       </div>
