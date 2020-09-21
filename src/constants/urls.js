@@ -10,7 +10,8 @@ export const MAIN_ROUTER = [
     path: '/login',
     exact: true,
     component: Login,
-    hidden: true
+    hidden: true,
+    auth: false
   },
 
   {
@@ -19,7 +20,8 @@ export const MAIN_ROUTER = [
     icon: 'home',
     path: '/',
     component: Dashboard,
-    exact: true
+    exact: true,
+    auth: true
   },
 
   {
@@ -27,7 +29,8 @@ export const MAIN_ROUTER = [
     displayName: 'Người dùng',
     icon: 'user',
     path: '/users',
-    component: UsersList
+    component: UsersList,
+    auth: true
   },
 
   {
@@ -35,20 +38,23 @@ export const MAIN_ROUTER = [
     displayName: 'Quà tặng',
     icon: 'gift',
     path: '/gifts',
-    component: GiftList
+    component: GiftList,
+    auth: true
   },
 
   {
     name: 'gift-exchange',
     displayName: 'Đổi quà',
     icon: 'gift',
-    path: '/gift-exchange'
+    path: '/gift-exchange',
+    auth: true
   },
 
   {
     name: 'transactions',
     displayName: 'Giao dịch',
     icon: 'credit-card',
-    path: '/transactions'
+    path: '/transactions',
+    auth: true
   }
 ];
