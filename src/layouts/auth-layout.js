@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import MainSidebar from 'components/sidebar';
 
 const AuthLayout = ({ children }) => (
-  <div class="sidebar-layout">
+  <div className="sidebar-layout">
     <MainSidebar />
 
     <div className="main-content">

@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 function Login () {
   const [passwordShown, setPasswordShown] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { register, errors, handleSubmit, watch } = useForm();
+
   const togglePasswordVisibility = () => {
     setPasswordShown(passwordShown ? false : true);
+  };
+
+  const onSubmit = (data) => {
+    setLoading(true);
   };
 
   return (
@@ -14,15 +22,29 @@ function Login () {
           Sign in
         </h1>
 
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
             <label>Username</label>
 
             <input
-              type="text"
-              className="form-control"
               placeholder="johndoe"
+              name="username"
+              type="text"
+              ref={register({ required: true })}
+              className={
+                `
+                  ${errors.username ? 'is-invalid' : ''}
+                  form-control
+                `
+              }
             />
+
+            {
+              errors.username &&
+              <div className="invalid-feedback">
+                Username cannot be blank.
+              </div>
+            }
           </div>
 
           <div className="form-group">
@@ -32,11 +54,18 @@ function Login () {
               </div>
             </div>
 
-            <div className="input-group">
+            <div className="input-group input-group-feedback">
               <input
-                type={passwordShown ? 'text' : 'password'}
-                className="form-control form-control-appended"
                 placeholder="Enter your password"
+                name="password"
+                type={passwordShown ? 'text' : 'password'}
+                ref={register({ required: true })}
+                className={
+                  `
+                    ${errors.password ? 'is-invalid' : ''}
+                    form-control form-control-appended
+                  `
+                }
               />
 
               <div
@@ -49,11 +78,30 @@ function Login () {
                   }></i>
                 </span>
               </div>
+
+              {
+                errors.password &&
+                <div className="invalid-feedback">
+                  Password cannot be blank.
+                </div>
+              }
             </div>
           </div>
 
-          <button className="btn btn-lg btn-block btn-primary mb-3">
-            Sign in
+          <button
+            className="btn btn-lg btn-block btn-primary"
+            disabled={!watch('username') || !watch('password') || loading}
+          >
+            <span className="mr-3">Sign in</span>
+
+            {
+              loading &&
+
+              <span
+                className="spinner-grow spinner-grow-sm"
+                aria-hidden="true"
+              ></span>
+            }
           </button>
         </form>
       </div>

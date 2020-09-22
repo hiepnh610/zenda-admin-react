@@ -1,0 +1,10 @@
+.input-group {
+  &.input-group-feedback {
+    .input-group-append {
+      .input-group-text {
+        border-top-right-radius: $border-radius-size;
+        border-bottom-right-radius: $border-radius-size;
+      }
+    }
+  }
+}
