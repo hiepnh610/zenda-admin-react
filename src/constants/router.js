@@ -5,56 +5,50 @@ import GiftList from 'pages/gifts/gift-list';
 
 export const MAIN_ROUTER = [
   {
-    name: 'login',
-    displayName: 'Đăng nhập',
+    name: 'Login',
     path: '/login',
     exact: true,
     component: Login,
     hidden: true,
-    auth: false
+    auth: false,
   },
 
   {
-    name: 'dashboard',
-    displayName: 'Trang chủ',
+    name: 'Dashboard',
     icon: 'home',
     path: '/',
     component: Dashboard,
     exact: true,
-    auth: true
+    auth: true,
   },
 
   {
-    name: 'users',
-    displayName: 'Người dùng',
+    name: 'Users',
     icon: 'user',
     path: '/users',
     component: UsersList,
-    auth: true
+    auth: true,
   },
 
   {
-    name: 'gifts',
-    displayName: 'Quà tặng',
+    name: 'Gifts',
     icon: 'gift',
     path: '/gifts',
     component: GiftList,
-    auth: true
+    auth: true,
   },
 
   {
-    name: 'gift-exchange',
-    displayName: 'Đổi quà',
+    name: 'Gift Exchange',
     icon: 'gift',
     path: '/gift-exchange',
-    auth: true
+    auth: true,
   },
 
   {
-    name: 'transactions',
-    displayName: 'Giao dịch',
+    name: 'Transactions',
     icon: 'credit-card',
     path: '/transactions',
-    auth: true
-  }
+    auth: true,
+  },
 ];

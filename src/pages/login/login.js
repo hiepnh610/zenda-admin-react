@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-function Login () {
+function Login() {
+  const { register, errors, handleSubmit, watch } = useForm();
   const [passwordShown, setPasswordShown] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { register, errors, handleSubmit, watch } = useForm();
 
   const togglePasswordVisibility = () => {
     setPasswordShown(passwordShown ? false : true);
@@ -17,10 +17,7 @@ function Login () {
   return (
     <div className="row justify-content-center">
       <div className="col-12 col-md-5 col-xl-4 my-5">
-
-        <h1 className="display-4 text-center mb-3">
-          Sign in
-        </h1>
+        <h1 className="display-4 text-center mb-3">Sign in</h1>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
@@ -31,20 +28,15 @@ function Login () {
               name="username"
               type="text"
               ref={register({ required: true })}
-              className={
-                `
+              className={`
                   ${errors.username ? 'is-invalid' : ''}
                   form-control
-                `
-              }
+                `}
             />
 
-            {
-              errors.username &&
-              <div className="invalid-feedback">
-                Username cannot be blank.
-              </div>
-            }
+            {errors.username && (
+              <div className="invalid-feedback">Username cannot be blank.</div>
+            )}
           </div>
 
           <div className="form-group">
@@ -60,12 +52,10 @@ function Login () {
                 name="password"
                 type={passwordShown ? 'text' : 'password'}
                 ref={register({ required: true })}
-                className={
-                  `
+                className={`
                     ${errors.password ? 'is-invalid' : ''}
                     form-control form-control-appended
-                  `
-                }
+                  `}
               />
 
               <div
@@ -74,17 +64,16 @@ function Login () {
               >
                 <span className="input-group-text">
                   <i
-                    className={`fe fe-${passwordShown ? 'eye-off' : 'eye'}`
-                  }></i>
+                    className={`fe fe-${passwordShown ? 'eye-off' : 'eye'}`}
+                  ></i>
                 </span>
               </div>
 
-              {
-                errors.password &&
+              {errors.password && (
                 <div className="invalid-feedback">
                   Password cannot be blank.
                 </div>
-              }
+              )}
             </div>
           </div>
 
@@ -94,19 +83,17 @@ function Login () {
           >
             <span className="mr-3">Sign in</span>
 
-            {
-              loading &&
-
+            {loading && (
               <span
                 className="spinner-grow spinner-grow-sm"
                 aria-hidden="true"
               ></span>
-            }
+            )}
           </button>
         </form>
       </div>
     </div>
   );
-};
+}
 
 export default Login;
